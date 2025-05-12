@@ -1,0 +1,21 @@
+<ng-container *ngIf="cocktailData" style="max-width: 80%;">
+    <img [src]="cocktailData.strDrinkThumb" alt="Imagen del cóctel"
+        style="width: 100%; border-radius: 8px; margin-bottom: 1rem" />
+
+    <p><strong>Categoría:</strong> {{ cocktailData.strCategory }}</p>
+    <p><strong>Tipo:</strong> {{ cocktailData.strAlcoholic }}</p>
+    <p><strong>Vaso:</strong> {{ cocktailData.strGlass }}</p>
+    <p><strong>Instrucciones:</strong> {{ cocktailData.strInstructions }}</p>
+
+    <h3>Ingredientes:</h3>
+
+    <ul>
+        @for (i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]; track i) {
+        @if (cocktailData['strIngredient' + i]) {
+        <li>
+            {{ cocktailData['strIngredient' + i] }} - {{ cocktailData['strMeasure' + i] || 'cantidad no especificada' }}
+        </li>
+        }
+        }
+    </ul>
+</ng-container>
