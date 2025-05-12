@@ -20,6 +20,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  user-select: none;
 }
 
 ::ng-deep .p-datatable-tbody tr:nth-child(odd) {
@@ -40,4 +41,37 @@
   margin: 0 auto;
   border-radius: 4px;
   width: 48px;
+}
+
+strong {
+  color: #ff4081;
+  font-size: 16px;
+  text-shadow: 0 0 10px rgba(255, 64, 129, 0.3);
+  padding: 8px 16px;
+  background: rgba(255, 64, 129, 0.1);
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.search-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.search-container input {
+  padding: 1em;
+  border-radius: 10px;
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.search-container button {
+  padding: 1em 0.8rem;
+  border-radius: 10px;
+  background: #F64281;
+  color: white;
+  border: none;
 }
