@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  width: 80vw;
+  max-width: 800px;
+  margin: 1rem auto;
+}
+
+::ng-deep .p-datatable {
+  background: #2c2c2c;
+  border-radius: 20px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+::ng-deep .p-datatable-thead th {
+  background: #1f1f1f;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+::ng-deep .p-datatable-tbody tr:nth-child(odd) {
+  background: #272727;
+}
+
+::ng-deep .p-datatable-tbody tr:hover {
+  background: #3a3a3a;
+}
+
+::ng-deep .p-datatable-tbody td {
+  color: white;
+  padding: 12px 8px;
+}
+
+::ng-deep .p-datatable-tbody img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+  width: 48px;
+}

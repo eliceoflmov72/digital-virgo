@@ -4,7 +4,7 @@ import { routes } from './app.routes';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
+import Material from '@primeng/themes/material';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
@@ -15,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     providePrimeNG(
       {
         theme: {
-          preset: Aura
+          preset: Material
         }
       }
     ),

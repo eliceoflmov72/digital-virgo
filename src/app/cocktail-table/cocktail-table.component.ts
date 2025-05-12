@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CocktailsService } from '../services/cocktail.service';
+import { TableModule } from 'primeng/table';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-cocktail-table',
-  imports: [],
+  imports: [TableModule, CommonModule],
   templateUrl: './cocktail-table.component.html',
   styleUrl: './cocktail-table.component.css'
 })
