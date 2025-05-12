@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { CocktailsService } from '../services/cocktail.service';
 
@@ -10,15 +10,15 @@ import { CocktailsService } from '../services/cocktail.service';
   templateUrl: './cocktail-details.component.html',
   styleUrl: './cocktail-details.component.css'
 })
-export class CocktailDetailsComponent implements OnInit {
+export class CocktailDetailsComponent implements OnChanges {
   @Input() id!: number;
   cocktailData: any;
   visible = true;
 
-  constructor(private cocktailService: CocktailsService) {}
+  constructor(private cocktailService: CocktailsService) { }
 
-  ngOnInit() {
-    if (this.id) {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['id'] && this.id) {
       this.searchCocktailById(this.id);
     }
   }

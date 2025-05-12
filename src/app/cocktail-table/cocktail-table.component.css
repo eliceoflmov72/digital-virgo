@@ -68,7 +68,8 @@ strong {
   border: 1px solid #444;
 }
 
-.search-container button, button {
+.search-container button,
+button {
   padding: 1em 0.8rem;
   border-radius: 10px;
   background: #F64281;

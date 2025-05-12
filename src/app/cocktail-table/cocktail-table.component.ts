@@ -14,9 +14,6 @@ import { CocktailDetailsComponent } from '../cocktail-details/cocktail-details.c
   styleUrl: './cocktail-table.component.css'
 })
 export class CocktailTableComponent implements OnInit {
-
-
-
   cocktails: any;
   letter: string = '';
   category: string = '';
@@ -25,7 +22,7 @@ export class CocktailTableComponent implements OnInit {
   selectedId: number | undefined;
 
   get alcoholicCocktailsCount(): number {
-    return this.cocktails?.filter((cocktail: any) => cocktail.strAlcoholic === 'Alcoholic').length || 0;
+    return this.cocktails.filter((cocktail: any) => cocktail.strAlcoholic === 'Alcoholic').length || 0;
   }
 
   openDialog(id: number) {
@@ -40,56 +37,63 @@ export class CocktailTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cocktailService.getCategories().subscribe({
-      next: (response: any) => {
-        this.categories = response.drinks.map((cat: any) => cat.strCategory);
-      },
-      error: () => {
-        this.categories = [];
-      }
-    });
+    this.cocktailService.getCategories()
+      .subscribe({
+        next: (response: any) => {
+          this.categories = response.drinks.map((cat: any) => cat.strCategory);
+        },
+        error: () => {
+          this.categories = [];
+        }
+      });
 
   }
 
   searchByLetter() {
     const letter = this.letter.trim().toLowerCase();
     if (letter.length === 1) {
-      this.cocktailService.getCocktailsByFirstLetter(letter).subscribe({
-        next: (response) => this.cocktails = response.drinks || [],
-        error: (e) => this.cocktails = []
-      });
+      this.cocktailService.getCocktailsByFirstLetter(letter)
+        .subscribe({
+          next: (response) => this.cocktails = response.drinks || [],
+          error: (error: any) => {
+            console.error('Error getting cocktail by letter', error);
+          }
+        });
     } else {
       this.cocktails = [];
     }
   }
 
   searchByCategory() {
-    const category = this.category.trim();
-    if (category) {
-      this.cocktailService.getCocktailByCategory(category).subscribe({
-        next: (response: any) => {
-          this.cocktails = response.drinks || [];
-        },
-        error: () => {
-          this.cocktails = [];
-        }
+    this.cocktails = [];
+
+    if (!this.category) return;
+
+    this.cocktailService.getCocktailByCategory(this.category)
+      .subscribe((response: any) => {
+        response.drinks?.forEach((data: any) => {
+          this.cocktailService
+            .getCocktailById(data.idDrink)
+            .subscribe((concrete: any) => {
+              const concrete_cocktail = concrete.drinks?.[0];
+              this.cocktails.push(concrete_cocktail);
+            });
+        });
       });
-    } else {
-      this.cocktails = [];
-    }
   }
 
   getRandomCocktail() {
+    this.cocktails = []
     this.cocktailService.getRandomCocktail().subscribe({
       next: (response: any) => {
         this.selectedId = response.drinks[0].idDrink;
         this.showDialog = true;
       },
-      error: () => console.error('Error al obtener cóctel aleatorio')
+      error: () => console.error('Error obtaining aleatory cocktail')
     });
   }
-  
-  
+
+
 
 
 

@@ -10,7 +10,7 @@ describe('CocktailTableComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CocktailTableComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CocktailTableComponent);
     component = fixture.componentInstance;
